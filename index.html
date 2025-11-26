@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PhotoZoo - Enciclopédia da Natureza</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar" aria-label="Menu lateral">
+    <img src="imagens/logo.png" alt="PhotoZoo Logo" class="logo" />
+    <nav class="menu" role="navigation" aria-label="Menu principal">
+      <a class="menu-item" href="#sobre"><img src="imagens/sobre.png" alt="Sobre" class="sidebar-icon"> <span>Sobre</span></a>
+      <a class="menu-item" href="#enciclopedia"><img src="imagens/enciclopedia.png" alt="Enciclopédia" class="sidebar-icon"> <span>Enciclopédia</span></a>
+      <a class="menu-item" href="#ajuda"><img src="imagens/dicas.png" alt="Dicas" class="sidebar-icon"> <span>Dicas</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <a class="menu-item footer-item" href="#contato"><img src="imagens/contato.png" alt="Contato" class="sidebar-icon"> <span>Contato</span></a>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <header>
+      <div class="title">
+        <h1>🌿 PhotoZoo — Enciclopédia da Natureza</h1>
+        <div class="subtitle">Aprenda sobre animais e plantas brasileiras em risco de extinção</div>
+      </div>
+      <div>
+        <small class="meta">Estilo infantil educativo • Conteúdo adaptado</small>
+        <div id="userInfo" style="display:inline-block; margin-left:12px;"></div>
+      </div>
+    </header>
+
+    <!-- content sections follow -->
+
+    <!-- Empresa -->
+    <section id="sobre" class="card" aria-labelledby="sobre-title">
+      <h2 id="sobre-title">Sobre a Empresa</h2>
+      <p style="margin-top:8px;">
+        O <strong>PhotoZoo</strong> é um projeto educativo interativo voltado para crianças e jovens, que une
+        jogo e conhecimento para incentivar a conservação da natureza. Aqui você aprende sobre
+        espécies brasileiras ameaçadas, biomas e como ajudar a conservar a biodiversidade.
+      </p>
+
+      <div style="display:flex; gap:20px; margin-top:12px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:220px;">
+          <h3>Missão</h3>
+          <p>Educar e conscientizar sobre a importância da preservação ambiental por meio de atividades lúdicas.</p>
+        </div>
+        <div style="flex:1; min-width:220px;">
+          <h3>Visão</h3>
+          <p>Ser referência em educação ambiental interativa para crianças.</p>
+        </div>
+        <div style="flex:1; min-width:220px;">
+          <h3>Valores</h3>
+          <ul style="margin-top:6px; padding-left:18px;">
+            <li>Respeito à natureza</li>
+            <li>Curiosidade científica</li>
+            <li>Diversão com propósito</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:12px;">Curiosidades</h3>
+      <p>PhotoZoo vem da junção "photo" (fotografia) e "zoo" (zoológico). Nosso mascote é uma arara-azul, símbolo da biodiversidade brasileira.</p>
+    </section>
+
+  <!-- Enciclopédia -->
+  <section id="enciclopedia" class="card" style="margin-top:8px;">
+      <h2>Enciclopédia dos Animais e Plantas</h2>
+
+      <div class="controls" style="margin-top:10px;">
+        <div class="search">
+          <input id="searchInput" type="text" placeholder="🔍 Pesquise por nome (ex: onça, arara, pau-brasil)..." />
+        </div>
+
+        <div class="filters" role="tablist" aria-label="Filtros">
+          <button class="active" data-filter="todos">Todos</button>
+          <button data-filter="mamifero">Mamíferos</button>
+          <button data-filter="ave">Aves</button>
+          <button data-filter="reptil">Répteis</button>
+          <button data-filter="anfibio">Anfíbios</button>
+          <button data-filter="peixe">Peixes</button>
+          <button data-filter="inseto">Insetos</button>
+          <button data-filter="planta">Plantas</button>
+        </div>
+      </div>
+
+      <p style="margin-bottom:10px; color:#4b5c47;">Use os filtros para ver apenas um grupo. A busca filtra por nome e por palavra-chave dentro da descrição.</p>
+
+      <div class="grid" id="catalog">
+        <!-- 1 Onça-pintada -->
+        <article class="animal-card" data-type="mamifero" data-name="onça-pintada onca-pintada jaguar">
+          <img src="imagens/onca-pintada.png" alt="Onça-pintada">
+          <h3>Onça-pintada</h3>
+          <p>Maior felino das Américas. Habitat: florestas e áreas pantanosas. Ameaça: perda de habitat e conflito com humanos.</p>
+          <div class="meta">Curiosidade: Também chamada de jaguar.</div>
+          <p class="meta"><strong>Hábitos:</strong> Predadora solitária, ativa principalmente ao amanhecer e anoitecer, excelente nadadora. <strong>Estado de conservação:</strong> Vulnerável em muitas áreas; ameaças incluem fragmentação de habitat e caça.</p>
+        </article>
+      
+        <!-- 2 Mico-leão-dourado -->
+        <article class="animal-card" data-type="mamifero" data-name="mico-leão-dourado leao dourado primata">
+          <img src="imagens/mico-leao-dourado.png" alt="Mico-leão-dourado">
+          <h3>Mico-leão-dourado</h3>
+          <p>Habita Mata Atlântica. Ameaça: desmatamento e fragmentação.</p>
+          <div class="meta">Curiosidade: Espécie símbolo de reintrodução em áreas protegidas.</div>
+          <p class="meta"><strong>Hábitos:</strong> Vive em grupos familiares e é diurno; alimenta-se de frutos, insetos e pequenos vertebrados. <strong>Estado de conservação:</strong> Em perigo (ações de conservação têm ajudado, mas continua ameaçado pela perda de habitat).</p>
+        </article>
+      
+        <!-- 3 Tamanduá-bandeira -->
+        <article class="animal-card" data-type="mamifero" data-name="tamanduá-bandeira tamandua">
+          <img src="imagens/tamandua-bandeira.png" alt="Tamanduá-bandeira">
+          <h3>Tamanduá-bandeira</h3>
+          <p>Alimenta-se de formigas e cupins. Habitat: florestas e cerrado. Ameaça: atropelamento e perda de habitat.</p>
+          <div class="meta">Curiosidade: Tem garras fortes para abrir cupinzeiros.</div>
+          <p class="meta"><strong>Hábitos:</strong> Animal solitário e de hábitos crepusculares; percorre grandes áreas em busca de alimento. <strong>Estado de conservação:</strong> Vulnerável em várias regiões devido à perda de habitat e atropelamentos.</p>
+        </article>
+      
+        <!-- 4 Lobo-guará -->
+        <article class="animal-card" data-type="mamifero" data-name="lobo-guara maned wolf">
+          <img src="imagens/lobo-guara.png" alt="Lobo-guará">
+          <h3>Lobo-guará</h3>
+          <p>Habitante do cerrado. Ameaça: perda de habitat e atropelamentos.</p>
+          <div class="meta">Curiosidade: Possui pernas longas adaptadas ao cerrado.</div>
+          <p class="meta"><strong>Hábitos:</strong> Alimenta-se de frutos, pequenos mamíferos e insetos; tem hábitos crepusculares e é territorial. <strong>Estado de conservação:</strong> Vulnerável em muitos locais; perda de habitat é a principal ameaça.</p>
+        </article>
+      
+        <!-- 5 Muriqui -->
+        <article class="animal-card" data-type="mamifero" data-name="muriqui muriqui-do-norte woolly spider monkey">
+          <img src="imagens/muriqui-do-norte.png" alt="Muriqui-do-norte">
+          <h3>Muriqui-do-norte</h3>
+          <p>Primata da Mata Atlântica. Ameaça: desmatamento e fragmentação.</p>
+          <div class="meta">Curiosidade: Maior primata das Américas.</div>
+          <p class="meta"><strong>Hábitos:</strong> Vive em grupos com estrutura social complexa e é arborícola, rara vez desce ao chão. <strong>Estado de conservação:</strong> Criticamente em perigo em muitas populações devido à perda intensa de habitat.</p>
+        </article>
+      
+        <!-- 6 Boto-cor-de-rosa -->
+        <article class="animal-card" data-type="peixe" data-name="boto rosa amazon river dolphin">
+          <img src="imagens/boto-cor-de-rosa.png" alt="Boto-cor-de-rosa">
+          <h3>Boto-cor-de-rosa</h3>
+          <p>Rios da Amazônia. Ameaça: pesca acidental e degradação de habitat.</p>
+          <div class="meta">Curiosidade: Animal muito presente em lendas amazônicas.</div>
+          <p class="meta"><strong>Hábitos:</strong> Vive em águas doces de rios e várzeas, é sociável e curioso; alimenta-se de peixes. <strong>Estado de conservação:</strong> Vulnerável em algumas populações, afetado por pesca e poluição.</p>
+        </article>
+      
+        <!-- 7 Ariranha -->
+        <article class="animal-card" data-type="mamifero" data-name="ariranha giant otter">
+          <img src="imagens/ariranha.png" alt="Ariranha">
+          <h3>Ariranha</h3>
+          <p>Rios e lagos. Ameaça: caça e poluição da água.</p>
+          <div class="meta">Curiosidade: Vive em grupos familiares grandes.</div>
+          <p class="meta"><strong>Hábitos:</strong> Predadora aquática que caça peixes e crustáceos em grupos coordenados. <strong>Estado de conservação:</strong> Em perigo em muitas áreas; sensível à perda de habitat e poluição.</p>
+        </article>
+      
+        <!-- 9 Arara-vermelha -->
+        <article class="animal-card" data-type="ave" data-name="arara-vermelha guaruba macaw">
+          <img src="imagens/arara-vermelha.png" alt="Arara-vermelha">
+          <h3>Arara-vermelha</h3>
+          <p>Vive em florestas tropicais. Ameaça: tráfico e perda de habitat.</p>
+          <div class="meta">Curiosidade: Penas usadas em rituais tradicionais.</div>
+          <p class="meta"><strong>Hábitos:</strong> Vive em pares ou pequenos bandos; alimenta-se de frutos e sementes, nidifica em ocos de árvores. <strong>Estado de conservação:</strong> Vulnerável a gravemente ameaçada em áreas onde o tráfico é intenso.</p>
+        </article>
+      
+        <!-- 10 Harpia -->
+        <article class="animal-card" data-type="ave" data-name="harpia gaviaoreal harpy eagle">
+          <img src="imagens/harpia.png" alt="Harpia">
+          <h3>Harpia</h3>
+          <p>Grande ave de rapina da Amazônia. Ameaça: perda de habitat e caça.</p>
+          <div class="meta">Curiosidade: Uma das maiores aves de rapina do mundo.</div>
+          <p class="meta"><strong>Hábitos:</strong> Caça por emboscada em copas de árvores; alimenta-se de mamíferos e aves de médio porte. <strong>Estado de conservação:</strong> Vulnerável devido à destruição florestal e baixa densidade populacional.</p>
+        </article>
+      
+        <!-- 11 Tucano -->
+        <article class="animal-card" data-type="ave" data-name="tucano ramphastos toucan">
+          <img src="imagens/tucano.png" alt="Tucano">
+          <h3>Tucano</h3>
+          <p>Florestas tropicais. Ameaça: destruição do habitat.</p>
+          <div class="meta">Curiosidade: Possui bico grande colorido.</div>
+          <p class="meta"><strong>Hábitos:</strong> Frugívoro importante para dispersão de sementes; costuma viver em pequenos grupos. <strong>Estado de conservação:</strong> Muitas espécies são de menor preocupação, mas populações locais sofrem com desmatamento.</p>
+        </article>
+      
+        <!-- 12 Jacu -->
+        <article class="animal-card" data-type="ave" data-name="jacu penelope jacutinga">
+          <img src="imagens/jacu.png" alt="Jacu">
+          <h3>Jacu</h3>
+          <p>Ave terrestre da Mata Atlântica. Ameaça: caça e perda de habitat.</p>
+          <div class="meta">Curiosidade: Dispersor de sementes importante.</div>
+          <p class="meta"><strong>Hábitos:</strong> Alimenta-se de frutos e pequenos invertebrados; geralmente encontrado em áreas florestais remanescentes. <strong>Estado de conservação:</strong> Vulnerável em regiões com intensa caça e desmatamento.</p>
+        </article>
+      
+        <!-- 13 Jacaré-do-pantanal -->
+        <article class="animal-card" data-type="reptil" data-name="jacare-do-pantanal caiman crocodilian">
+          <img src="imagens/jacare.png" alt="Jacaré-do-pantanal">
+          <h3>Jacaré-do-pantanal</h3>
+          <p>Rios e lagoas. Ameaça: caça e destruição do habitat.</p>
+          <div class="meta">Curiosidade: Predador de topo na região.</div>
+          <p class="meta"><strong>Hábitos:</strong> Predador oportunista que se alimenta de peixes, aves e mamíferos; usa áreas alagadas para nidificação. <strong>Estado de conservação:</strong> Dependendo da espécie/região pode variar; práticas de manejo ajudaram algumas populações, mas a perda de habitat ainda é um problema.</p>
+        </article>
+
+    <article class="animal-card" data-type="ave" data-name="arara-azul arara hyacinth macaw">
+      <img src="imagens/arara-azul.png" alt="Arara-azul">
+            <h3>Arara-azul</h3>
+            <p>Vive no Pantanal e Amazônia. Ameaça: tráfico de animais e perda de habitat.</p>
+            <div class="meta">Curiosidade: Uma das maiores araras do mundo.</div>
+            <p class="meta"><strong>Hábitos:</strong> Vive em bandos pequenos; alimenta-se de sementes e frutas, muitas vezes de palmeiras. <strong>Estado de conservação:</strong> Vulnerável devido à captura para tráfico e perda de habitat.</p>
+          </article>
+      
+        <!-- 14 Tartaruga-verde -->
+        <article class="animal-card" data-type="reptil" data-name="tartaruga-verde tartaruga marinha chelonia">
+          <img src="imagens/tartaruga-verde.png" alt="Tartaruga-verde">
+          <h3>Tartaruga-verde</h3>
+          <p>Espécie marinha. Ameaças: poluição, pesca e perda de áreas de nidificação.</p>
+          <div class="meta">Curiosidade: Pode viver mais de 80 anos.</div>
+          <p class="meta"><strong>Hábitos:</strong> Migra longas distâncias entre áreas de alimentação e praias de nidificação; alimenta-se de algas e plantas marinhas. <strong>Estado de conservação:</strong> Ameaçada globalmente; nidificação em praias costeiras é crítica para a sobrevivência.</p>
+        </article>
+      
+        <!-- 15 Iguana -->
+        <article class="animal-card" data-type="reptil" data-name="iguana iguana lizard">
+          <img src="imagens/iguana.png" alt="Iguana">
+          <h3>Iguana</h3>
+          <p>Rios e florestas. Ameaça: captura e perda de habitat.</p>
+          <div class="meta">Curiosidade: Habita árvores e arbustos próximos à água.</div>
+          <p class="meta"><strong>Hábitos:</strong> Herbívora principalmente diurna; costuma tomar sol em galhos baixos. <strong>Estado de conservação:</strong> Muitas populações são estáveis, mas coleta e destruição de habitat ameaçam populações locais.</p>
+        </article>
+      
+        <!-- 16 Sapo-de-barriga-verde -->
+        <article class="animal-card" data-type="anfibio" data-name="sapo-de-barriga-verde green-bellied frog">
+          <img src="imagens/sapo-de-barriga-verde.png" alt="Sapo-de-barriga-verde">
+          <h3>Sapo-de-barriga-verde</h3>
+          <p>Vive próximo a rios e lagos. Ameaça: poluição e perda de habitat.</p>
+          <div class="meta">Curiosidade: Produz toxinas como defesa.</div>
+          <p class="meta"><strong>Hábitos:</strong> Anfíbio noturno que se reproduz em corpos d'água; predador de insetos. <strong>Estado de conservação:</strong> Vulnerável em áreas com poluição e perda de ambientes aquáticos.</p>
+        </article>
+      
+        <!-- 17 Perereca -->
+        <article class="animal-card" data-type="anfibio" data-name="perereca tree frog">
+          <img src="imagens/perereca.png" alt="Perereca">
+          <h3>Perereca</h3>
+          <p>Vive em árvores e arbustos. Ameaça: desmatamento.</p>
+          <div class="meta">Curiosidade: Capaz de saltos longos.</div>
+          <p class="meta"><strong>Hábitos:</strong> Anfíbio arborícola que frequenta bromélias e vegetação úmida; alimenta-se de insetos. <strong>Estado de conservação:</strong> Depende da espécie, muitas são sensíveis à perda de habitat.</p>
+        </article>
+      
+        <!-- 18 Pirarucu -->
+        <article class="animal-card" data-type="peixe" data-name="pirarucu arapaima fish">
+          <img src="imagens/pirarucu.jpg" alt="Pirarucu">
+          <h3>Pirarucu</h3>
+          <p>Maior peixe de água doce da Amazônia. Ameaça: pesca excessiva.</p>
+          <div class="meta">Curiosidade: Pode respirar ar atmosférico.</div>
+          <p class="meta"><strong>Hábitos:</strong> Espécie de água doce que realiza migrações locais durante enchentes; se alimenta de peixes e invertebrados. <strong>Estado de conservação:</strong> Ameaçado por pesca excessiva e degradação de rios.</p>
+        </article>
+      
+        <!-- 19 Dourado -->
+        <article class="animal-card" data-type="peixe" data-name="dourado golden fish">
+          <img src="imagens/dourado.png" alt="Dourado">
+          <h3>Dourado</h3>
+          <p>Rios do Pantanal. Ameaça: pesca e degradação do habitat.</p>
+          <div class="meta">Curiosidade: Muito apreciado na pesca esportiva.</div>
+          <p class="meta"><strong>Hábitos:</strong> Predador de peixes vivo que habita águas correntes e rios; relevante para pescadores esportivos. <strong>Estado de conservação:</strong> Populações pressionadas pela pesca e alterações no habitat.</p>
+        </article>
+      
+        <!-- 20 Borboleta-azul -->
+        <article class="animal-card" data-type="inseto" data-name="borboleta-azul morpho butterfly">
+          <img src="imagens/borboleta-azul.png" alt="Borboleta-azul">
+          <h3>Borboleta-azul</h3>
+          <p>Florestas tropicais. Ameaça: perda de habitat.</p>
+          <div class="meta">Curiosidade: As asas refletem a luz criando brilho intenso.</div>
+          <p class="meta"><strong>Hábitos:</strong> Vive em bordas de floresta e clareiras; larvas muitas vezes dependem de plantas específicas. <strong>Estado de conservação:</strong> Vulnerável localmente quando plantas hospedeiras desaparecem.</p>
+        </article>
+      
+        <!-- 21 Besouro-rinoceronte -->
+        <article class="animal-card" data-type="inseto" data-name="besouro-rinoceronte rhinoceros beetle">
+          <img src="imagens/besouro-rinosseronte.png" alt="Besouro-rinoceronte">
+          <h3>Besouro-rinoceronte</h3>
+          <p>Florestas tropicais. Ameaça: perda de habitat.</p>
+          <div class="meta">Curiosidade: Pode levantar objetos muito mais pesados que seu corpo.</div>
+          <p class="meta"><strong>Hábitos:</strong> Geralmente encontrado em madeira em decomposição e solo rico em matéria orgânica; importante para decomposição. <strong>Estado de conservação:</strong> Geralmente de menor preocupação, mas populações locais podem ser afetadas pelo desmatamento.</p>
+        </article>
+      
+        <!-- 22 Pau-brasil -->
+        <article class="animal-card" data-type="planta" data-name="pau-brasil">
+          <img src="imagens/pau-brasil.png" alt="Pau-brasil">
+          <h3>Pau-brasil</h3>
+          <p>Árvore símbolo do Brasil. Ameaça: desmatamento e exploração.</p>
+          <div class="meta">Curiosidade: Produz madeira avermelhada usada para corante.</div>
+          <p class="meta"><strong>Hábitos:</strong> Cresce em florestas tropicais, prefere solos úmidos; sua reprodução é lenta e dependente de conservação de parcelas florestais. <strong>Estado de conservação:</strong> Vulnerável a criticamente ameaçado em muitas áreas devido à exploração histórica e desmatamento.</p>
+        </article>
+      
+        <!-- 23 Vitória-régia -->
+        <article class="animal-card" data-type="planta" data-name="vitoria-regia victoria amazonica">
+          <img src="imagens/vitoria-regia.png" alt="Vitória-régia">
+          <h3>Vitória-régia</h3>
+          <p>Planta aquática da Amazônia. Ameaça: poluição da água.</p>
+          <div class="meta">Curiosidade: Suas folhas podem suportar o peso de uma criança pequena.</div>
+          <p class="meta"><strong>Hábitos:</strong> Vive em águas calmas e rasas de lagoas e várzeas; floresce à noite e é polinizada por besouros. <strong>Estado de conservação:</strong> Sensível à poluição e alterações hidrológicas locais.</p>
+        </article>
+      
+        <!-- 24 Orquídea -->
+        <article class="animal-card" data-type="planta" data-name="orquidea orchid">
+          <img src="imagens/orquidea.png" alt="Orquídea">
+          <h3>Orquídea</h3>
+          <p>Encontrada em florestas tropicais. Ameaça: coleta excessiva.</p>
+          <div class="meta">Curiosidade: Uma das maiores famílias de plantas do mundo.</div>
+          <p class="meta"><strong>Hábitos:</strong> Muitas espécies são epífitas, vivendo sobre outras plantas; dependem de polinizadores específicos. <strong>Estado de conservação:</strong> Muitas espécies locais estão ameaçadas pela coleta e perda de habitat.</p>
+        </article>
+      
+        <!-- 25 Araucária -->
+        <article class="animal-card" data-type="planta" data-name="araucaria pinheiro-do-parana">
+          <img src="imagens/araucaria.png" alt="Araucária">
+          <h3>Araucária</h3>
+          <p>Encontrada no Sul do Brasil. Ameaça: desmatamento.</p>
+          <div class="meta">Curiosidade: Produz sementes chamadas pinhões.</div>
+          <p class="meta"><strong>Hábitos:</strong> Árvore de copa alta que forma florestas abertas; sementes são alimento importante para fauna local. <strong>Estado de conservação:</strong> Vulnerável localmente devido ao desmatamento e uso da terra.</p>
+        </article>
+      
+        <!-- 26 Jequitibá -->
+        <article class="animal-card" data-type="planta" data-name="jequitiba jequitiba rosa">
+          <img src="imagens/jequitiba.png" alt="Jequitibá">
+          <h3>Jequitibá</h3>
+          <p>Árvore gigante da Mata Atlântica. Ameaça: desmatamento.</p>
+          <div class="meta">Curiosidade: Pode atingir centenas de anos de idade.</div>
+          <p class="meta"><strong>Hábitos:</strong> Espécie de crescimento lento que domina trechos de floresta madura; fundamental para estabilidade ecológica. <strong>Estado de conservação:</strong> Vulnerável em áreas desmatadas; árvores remanescentes são frequentemente protegidas em reservas.</p>
+        </article>
+      
+        <!-- 27 Cedro -->
+        <article class="animal-card" data-type="planta" data-name="cedro">
+          <img src="imagens/cedro.png" alt="Cedro">
+          <h3>Cedro</h3>
+          <p>Árvore nativa da Mata Atlântica. Ameaça: corte ilegal.</p>
+          <div class="meta">Curiosidade: Madeira muito resistente e valorizada.</div>
+          <p class="meta"><strong>Hábitos:</strong> Cresce em florestas densas e tem madeira muito procurada pela indústria madeireira. <strong>Estado de conservação:</strong> Em declínio onde há exploração sem manejo; protegido em áreas conservadas.</p>
+        </article>
+      
+        <!-- 28 Jequitibá-rosa -->
+        <article class="animal-card" data-type="planta" data-name="jequitibá-rosa">
+          <img src="imagens/jequitiba-rosa.png" alt="Jequitibá-rosa">
+          <h3>Jequitibá-rosa</h3>
+          <p>Árvore de grande porte da Mata Atlântica. Ameaça: desmatamento.</p>
+          <div class="meta">Curiosidade: Uma das maiores árvores brasileiras.</div>
+          <p class="meta"><strong>Hábitos:</strong> Espécie emergente que requer florestas maduras para se desenvolver; importante como abrigo e fonte de alimento para fauna. <strong>Estado de conservação:</strong> Vulnerável a criticamente ameaçada em áreas com intensa perda florestal.</p>
+        </article>
+      </div>
+      
+
+      <p style="margin-top:12px; font-size:.9rem; color:#586a53;">Dica: clique nos botões de filtro para ver apenas um grupo. Use a busca para encontrar espécies por nome ou palavra-chave.</p>
+    </section>
+
+  <!-- Ajuda / Dicas -->
+  <section id="ajuda" class="card">
+      <h2>Conceitos básicos do jogo</h2>
+      <p style="margin-top:8px;">Transforme seu tempo no PhotoZoo em aprendizado:</p>
+      <ul style="padding-left:18px; margin-top:8px;">
+        <li>Use a câmera para fotografar os animais e salvar informações sobre suas espécies no seu bestiário.</li>
+        <li>Registre diferentes comportamentos (alimentação, banho, vôo) para ganhar pontos.</li>
+        <li>Explore biomas diversos: Amazônia, Cerrado, Mata Atlântica, Pantanal, Litoral.</li>
+        <li>Complete missões educativas para desbloquear curiosidades e cartões de conservação.</li>
+      </ul>
+
+      <h3 style="margin-top:10px;">Missões semanais (exemplos)</h3>
+      <ul style="padding-left:18px; margin-top:8px;">
+        <li>🏞️ Pantanal — fotografe 3 espécies aquáticas diferentes.</li>
+        <li>🌳 Mata Atlântica — encontre e registre 2 espécies de plantas.</li>
+        <li>🌊 Costa — registre uma tartaruga-verde em um ninho.</li>
+      </ul>
+    </section>
+
+  <!-- Contato -->
+  <section id="contato" class="card">
+      <h2>Entre em Contato</h2>
+      <div class="contact-info" style="margin-top:8px;">
+        <a href="https://instagram.com/photozoo" target="_blank" rel="noopener">Instagram: @photozoo.OFC</a><br>
+        <a href="tel:+559999999999">Telefone: +55 11 97226-3637</a><br>
+        <a href="mailto:contato@photozoo.example">E-mail:photozoo2025@gmail.com</a>
+      </div>
+
+      <p style="margin-top:12px;">Se você quiser, envie sugestões de espécies para adicionarmos ou reporte erros de informação.</p>
+    </section>
+
+  </main>
+
+  <script src="backend.js"></script>
+</body>
+</html>

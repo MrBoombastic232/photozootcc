@@ -1,0 +1,203 @@
+/* Reset e tipografia */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+	font-family: "Comic Sans MS", "Trebuchet MS", Arial, sans-serif;
+	background: linear-gradient(135deg, #dbe6cf 0%, #e8dcc8 50%, #cfc8b3 100%);
+	color: #213218;
+	-webkit-font-smoothing: antialiased;
+	display: flex;
+	min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 72px;
+	background: linear-gradient(180deg, #6b8a43, #5b6d3a);
+	color: #fff;
+	transition: width .28s ease;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 18px;
+	z-index: 30;
+	box-shadow: 2px 0 8px rgba(0,0,0,0.12);
+}
+.sidebar:hover { width: 240px; }
+.logo {
+	width: 54px;
+	height: 54px;
+	border-radius: 10px;
+	object-fit: cover;
+	transition: width .28s ease, height .28s ease;
+	margin-bottom: 16px;
+}
+.sidebar:hover .logo { width: 110px; height: 110px; }
+
+.menu {
+	width: 100%;
+	margin-top: 6px;
+}
+.menu-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 14px;
+	color: #fff;
+	cursor: pointer;
+	width: 100%;
+	text-decoration: none;
+	border-radius: 8px;
+}
+.menu-item i { font-size: 20px; width: 28px; text-align: center; }
+.menu-item img.sidebar-icon { width: 28px; height: 28px; object-fit: contain; display:inline-block; }
+.menu-item span {
+	display: none;
+	font-weight: 700;
+	white-space: nowrap;
+}
+.sidebar:hover .menu-item span { display: inline; }
+.menu-item:hover { background: rgba(255,255,255,0.06); }
+
+/* Sidebar footer (Contato pinned to bottom) */
+.sidebar-footer {
+	margin-top: auto; /* push to bottom inside .sidebar */
+	width: 100%;
+	padding: 6px 0 18px;
+	display: flex;
+}
+/* Make footer item match the other menu items (left-aligned) */
+.sidebar-footer .menu-item {
+	justify-content: flex-start;
+	padding: 12px 14px;
+	width: 100%;
+}
+.menu-item.footer-item .sidebar-icon { width: 24px; height: 24px; }
+
+/* Main content */
+.main {
+	margin-left: 72px;
+	padding: 28px;
+	width: calc(100% - 72px);
+	transition: margin-left .28s ease, width .28s ease;
+}
+.sidebar:hover ~ .main, .main.sidebar-open { margin-left: 240px; width: calc(100% - 240px); }
+
+header {
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:16px;
+	margin-bottom: 18px;
+}
+.title {
+	display:flex;
+	align-items:center;
+	gap:12px;
+}
+.title h1 {
+	font-size: 1.6rem;
+	color: #2f4b2d;
+	letter-spacing: .4px;
+}
+.subtitle { color:#5d7a56; font-size: .95rem; }
+
+/* Sections */
+.card {
+	background: rgba(255,255,255,0.92);
+	border-radius: 14px;
+	padding: 18px;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+	margin-bottom: 18px;
+}
+
+/* Enciclopédia layout */
+.controls {
+	display:flex;
+	gap:12px;
+	align-items:center;
+	flex-wrap:wrap;
+	margin-bottom:14px;
+}
+.search {
+	flex:1 1 320px;
+	display:flex;
+	align-items:center;
+	gap:8px;
+}
+.search input {
+	width:100%;
+	padding:10px 12px;
+	border-radius:10px;
+	border:2px solid #958766;
+	font-size: .95rem;
+}
+.filters {
+	display:flex;
+	gap:8px;
+	flex-wrap:wrap;
+}
+.filters button {
+	padding:8px 12px;
+	border-radius:10px;
+	border: none;
+	background: #8b7b58;
+	color: #fff;
+	cursor:pointer;
+	font-weight:700;
+}
+.filters button.active { background:#5b7a45; }
+
+/* Grid de cards de animais/plantas */
+.grid {
+	display:grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 14px;
+}
+.animal-card {
+	background: linear-gradient(180deg, #f6f9f0, #eef4e6);
+	border-radius: 12px;
+	padding: 10px;
+	overflow: hidden;
+	display:flex;
+	flex-direction:column;
+	gap:8px;
+	min-height: 220px;
+	transition: transform .16s ease, box-shadow .16s ease;
+	border: 1px solid rgba(88,81,61,0.08);
+}
+.animal-card:hover { transform: translateY(-6px); box-shadow: 0 10px 26px rgba(0,0,0,0.10); }
+.animal-card img {
+	width:100%;
+	height:120px;
+	object-fit:cover;
+	border-radius:8px;
+	border: 1px solid rgba(0,0,0,0.04);
+}
+.animal-card h3 { font-size:1rem; color:#2f4b2d; }
+.animal-card p { font-size:.86rem; color:#3b4a3a; }
+.meta { font-size:.8rem; color:#5b6b53; }
+
+/* Footer / contato */
+.contact-info a {
+	color:#3f523e;
+	text-decoration:none;
+	font-weight:700;
+	display:inline-block;
+	margin-right:10px;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+	.sidebar { position:fixed; left:0; top:0; bottom:0; }
+	.main { margin-left:72px; width: calc(100% - 72px); padding:16px; }
+}
+@media (max-width: 520px) {
+	.title h1 { font-size:1.2rem; }
+	.animal-card img { height:100px; }
+}
+
