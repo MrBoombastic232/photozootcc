@@ -1,90 +1,103 @@
 /* Reset e tipografia */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html,body { height: 100%; }
+html { scroll-behavior: smooth; }
+
+:root { --topbar-offset: 76px; }
 body {
-	font-family: "Comic Sans MS", "Trebuchet MS", Arial, sans-serif;
-	background: linear-gradient(135deg, #dbe6cf 0%, #e8dcc8 50%, #cfc8b3 100%);
-	color: #213218;
-	-webkit-font-smoothing: antialiased;
-	display: flex;
-	min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #F2F5E9 0%, #E6F1D5 50%, #F2F5E9 100%);
+    color: #1D3B29;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    min-height: 100vh;
 }
 
 /* Sidebar */
-.sidebar {
-	position: fixed;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	width: 72px;
-	background: linear-gradient(180deg, #6b8a43, #5b6d3a);
-	color: #fff;
-	transition: width .28s ease;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 18px;
-	z-index: 30;
-	box-shadow: 2px 0 8px rgba(0,0,0,0.12);
+.topbar {
+    position: fixed;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 72px;
+    background: linear-gradient(90deg, #2E5A2F, #3A6B35);
+    border-radius: 16px;
+    color: #F2F5E9;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    z-index: 100;
+    transition: top .4s ease;
 }
-.sidebar:hover { width: 240px; }
-.logo {
-	width: 54px;
-	height: 54px;
-	border-radius: 10px;
-	object-fit: cover;
-	transition: width .28s ease, height .28s ease;
-	margin-bottom: 16px;
+/* Quando a barra deve aparecer */
+.topbar.visible {
+    top: 12px;
 }
-.sidebar:hover .logo { width: 110px; height: 110px; }
+
+/* Para detectar o hover e impedir desaparecimento */
+.topbar:hover {
+    top: 12px;
+}
+.topbar .logo {
+    width: 54px;
+    height: 54px;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: width .28s ease, height .28s ease;
+}
+.topbar:hover .logo { 
+    width: 80px; 
+    height: 80px; 
+}
 
 .menu {
-	width: 100%;
-	margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-grow: 1;
 }
+
+/* Itens do menu */
 .menu-item {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	padding: 12px 14px;
-	color: #fff;
-	cursor: pointer;
-	width: 100%;
-	text-decoration: none;
-	border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: #F2F5E9;
+    border-radius: 8px;
+    transition: background .2s;
 }
-.menu-item i { font-size: 20px; width: 28px; text-align: center; }
-.menu-item img.sidebar-icon { width: 28px; height: 28px; object-fit: contain; display:inline-block; }
+
+.menu-item:hover {
+    background: rgba(255,255,255,0.08);
+}
+.menu-item img.sidebar-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
 .menu-item span {
-	display: none;
-	font-weight: 700;
-	white-space: nowrap;
+    font-weight: 700;
+    white-space: nowrap;
 }
-.sidebar:hover .menu-item span { display: inline; }
-.menu-item:hover { background: rgba(255,255,255,0.06); }
 
-/* Sidebar footer (Contato pinned to bottom) */
-.sidebar-footer {
-	margin-top: auto; /* push to bottom inside .sidebar */
-	width: 100%;
-	padding: 6px 0 18px;
-	display: flex;
+/* Item que fica à direita (Contato) */
+.topbar-footer {
+    margin-left: auto;
 }
-/* Make footer item match the other menu items (left-aligned) */
-.sidebar-footer .menu-item {
-	justify-content: flex-start;
-	padding: 12px 14px;
-	width: 100%;
-}
-.menu-item.footer-item .sidebar-icon { width: 24px; height: 24px; }
 
-/* Main content */
+/* Conteúdo principal agora desce */
 .main {
-	margin-left: 72px;
-	padding: 28px;
-	width: calc(100% - 72px);
-	transition: margin-left .28s ease, width .28s ease;
+  margin-top: 12px; /* reduzido ainda mais para aproximar o conteúdo do topo */
+  padding: 22px 20px;
+  width: 100%;
 }
+
 .sidebar:hover ~ .main, .main.sidebar-open { margin-left: 240px; width: calc(100% - 240px); }
 
 header {
@@ -108,11 +121,12 @@ header {
 
 /* Sections */
 .card {
-	background: rgba(255,255,255,0.92);
-	border-radius: 14px;
-	padding: 18px;
-	box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-	margin-bottom: 18px;
+    background: rgba(58, 107, 53, 0.92);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    margin-bottom: 18px;
+    color: #F2F5E9;
 }
 
 /* Enciclopédia layout */
@@ -142,13 +156,13 @@ header {
 	flex-wrap:wrap;
 }
 .filters button {
-	padding:8px 12px;
-	border-radius:10px;
-	border: none;
-	background: #8b7b58;
-	color: #fff;
-	cursor:pointer;
-	font-weight:700;
+    padding:8px 12px;
+    border-radius:10px;
+    border: none;
+    background: #8B6F47;
+    color: #F2F5E9;
+    cursor:pointer;
+    font-weight:700;
 }
 .filters button.active { background:#5b7a45; }
 
@@ -159,18 +173,26 @@ header {
 	gap: 14px;
 }
 .animal-card {
-	background: linear-gradient(180deg, #f6f9f0, #eef4e6);
-	border-radius: 12px;
-	padding: 10px;
-	overflow: hidden;
-	display:flex;
-	flex-direction:column;
-	gap:8px;
-	min-height: 220px;
-	transition: transform .16s ease, box-shadow .16s ease;
-	border: 1px solid rgba(88,81,61,0.08);
+  /* base neutral + subtle overlay; per-type rules override with a tint */
+  background: linear-gradient(180deg, rgba(58,107,53,0.06), rgba(58,107,53,0.03));
+  border-radius: 14px;
+  padding: 12px;
+  overflow: hidden;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-height: 220px;
+  transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease, border-color .18s ease, filter 260ms ease;
+  color: #F2F5E9;
+  position: relative;
+  border: 2px solid transparent; /* small contour will be applied by rarity */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12), inset 0 -6px 40px rgba(255,255,255,0.02);
+  cursor: pointer;
 }
-.animal-card:hover { transform: translateY(-6px); box-shadow: 0 10px 26px rgba(0,0,0,0.10); }
+.animal-card:hover:not(.expanded) { 
+  transform: translateY(-6px) scale(1.03); 
+  box-shadow: 0 10px 26px rgba(0,0,0,0.10); 
+}
 .animal-card img {
 	width:100%;
 	height:120px;
@@ -178,20 +200,17 @@ header {
 	border-radius:8px;
 	border: 1px solid rgba(0,0,0,0.04);
 }
-.animal-card h3 { font-size:1rem; color:#2f4b2d; }
-.animal-card p { font-size:.86rem; color:#3b4a3a; }
-.meta { font-size:.8rem; color:#5b6b53; }
+.animal-card h3 { font-size:1.05rem; color:#0f2b17; text-shadow: 0 1px 0 rgba(255,255,255,0.06); }
+.animal-card p { font-size:.9rem; color:#08210a; }
+.meta { font-size:.82rem; color:#0e2b15; opacity: .95; }
 
-/* Footer / contato */
 .contact-info a {
-	color:#3f523e;
-	text-decoration:none;
-	font-weight:700;
-	display:inline-block;
-	margin-right:10px;
+    color:#3A6B35;
+    text-decoration:none;
+    font-weight:700;
+    display:inline-block;
+    margin-right:10px;
 }
-
-/* Responsividade */
 @media (max-width: 900px) {
 	.sidebar { position:fixed; left:0; top:0; bottom:0; }
 	.main { margin-left:72px; width: calc(100% - 72px); padding:16px; }
@@ -201,3 +220,636 @@ header {
 	.animal-card img { height:100px; }
 }
 
+.empresa-hero {
+  position: relative;
+  height: 60vh; /* ocupa parte da tela dentro de sobre */
+  min-height: 360px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #F2F5E9;
+  border-radius: 12px;
+  margin: 0 0 18px 0;
+  background: linear-gradient(180deg, rgba(58,107,53,0.12), rgba(58,107,53,0.04));
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 900px) {
+  .empresa-hero { height: 42vh; min-height: 220px; }
+}
+
+@media (max-width: 520px) {
+  .empresa-hero { height: 34vh; min-height: 160px; }
+}
+
+/* Espaçamento ao usar scrollIntoView para compensar a topbar fixa */
+main > section, main .card { scroll-margin-top: var(--topbar-offset); }
+
+/* Animação: expansão da seção e entrada em cascata dos cards */
+.section-enter {
+  opacity: 0;
+  transform: translateY(8px) scale(0.996);
+  transition: opacity .7s cubic-bezier(.2,.9,.2,1), transform .7s cubic-bezier(.2,.9,.2,1);
+}
+.section-enter.show {
+  opacity: 1;
+  transform: none;
+}
+
+.section-enter .animal-card {
+  opacity: 0;
+  transform: translateY(20px) scale(0.994);
+  transition: opacity .65s cubic-bezier(.2,.9,.2,1), transform .65s cubic-bezier(.2,.9,.2,1);
+}
+.section-enter .animal-card.visible-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* Carrossel de fundo */
+.hero-bg-carousel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-bg-carousel img.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(10px) brightness(0.7);
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+
+/* Imagem ativa */
+.hero-bg-carousel img.active {
+  opacity: 1;
+}
+
+/* Sombra escura por cima */
+.empresa-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1;
+}
+
+/* Conteúdo do hero */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  color: #F2F5E9;
+}
+.empresa-hero h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.hero-content p,
+.empresa-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Botão */
+.btn-primary {
+  padding: 14px 28px;
+  background: #3A6B35;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: #1c9607;
+  transform: scale(1.06);
+}
+
+.container { 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  color: #1D3B29;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+
+.text-block { flex: 1 1 480px; }
+
+.img-block { flex: 1 1 480px; }
+
+.img-block img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* About topics: imagens distribuídas + texto (alternância para evitar repetição) */
+.about-topics {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.about-topic {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(58,107,53,0.08), rgba(58,107,53,0.02));
+}
+.about-topic .about-img {
+  width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex: 0 0 220px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+.about-topic .about-text h3 {
+  margin-bottom: 8px;
+  color: #F2F5E9;
+}
+.about-topic .about-text p {
+  color: #F2F5E9;
+  line-height: 1.38;
+}
+
+.about-topic.reverse { flex-direction: row-reverse; }
+
+@media (min-width: 880px) {
+  .about-topics { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 520px) {
+  .about-topic { flex-direction: column; align-items: stretch; }
+  .about-topic .about-img { width: 100%; height: 160px; flex: none; }
+}
+
+/* Rarity badge on animal cards */
+.rarity-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: .78rem;
+  color: #10220a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 6;
+}
+
+.rarity-comum { background: linear-gradient(180deg,#d6d6d6,#bfbfbf); color:#0d1a0d; box-shadow: 0 6px 14px rgba(0,0,0,0.12); font-family: Arial, Helvetica, sans-serif; font-weight:700; }
+.rarity-incomum { background: linear-gradient(180deg,#3fa85a,#1f8f35); color:#fff; box-shadow: 0 8px 22px rgba(31,143,53,0.22); font-family: 'Trebuchet MS', Helvetica, sans-serif; font-weight:800; }
+.rarity-raro { background: linear-gradient(180deg,#1f86d6,#0b5f9a); color:#fff; box-shadow: 0 8px 22px rgba(10,80,140,0.22); font-family: Georgia, 'Times New Roman', serif; font-style:italic; font-weight:700; }
+.rarity-epico { background: linear-gradient(180deg,#8850e6,#4a1f9a); color:#fff; box-shadow: 0 10px 28px rgba(88,32,154,0.26); font-family: 'Palatino Linotype', 'Book Antiqua', serif; font-weight:800; }
+.rarity-lendario { background: linear-gradient(180deg,#d98b00,#a86a00); color:#1b1200; box-shadow: 0 12px 30px rgba(168,106,0,0.24); font-family: 'Garamond', 'Georgia', serif; font-weight:900; }
+.rarity-boss { background: linear-gradient(180deg,#b71c1c,#7a0000); color:#fff; box-shadow: 0 14px 36px rgba(150,30,30,0.30); border: 1px solid rgba(255,255,255,0.06); font-family: 'Playfair Display', 'Cinzel', serif; font-weight:900; text-transform:uppercase; letter-spacing:.8px; }
+
+/* Small colored tint per animal type to approximate main colors of the species */
+.animal-card[data-type="mamifero"] { background-image: linear-gradient(180deg, rgba(96,64,40,0.08), rgba(46,70,42,0.04)); }
+.animal-card[data-type="ave"] { background-image: linear-gradient(180deg, rgba(255,220,120,0.06), rgba(255,180,60,0.03)); color: #072213; }
+.animal-card[data-type="reptil"] { background-image: linear-gradient(180deg, rgba(34,120,40,0.08), rgba(24,80,30,0.04)); }
+.animal-card[data-type="peixe"] { background-image: linear-gradient(180deg, rgba(30,140,200,0.08), rgba(12,80,120,0.04)); }
+.animal-card[data-type="anfibio"] { background-image: linear-gradient(180deg, rgba(60,180,90,0.08), rgba(30,110,60,0.04)); }
+.animal-card[data-type="inseto"] { background-image: linear-gradient(180deg, rgba(200,120,220,0.06), rgba(150,80,180,0.03)); color: #072213; }
+.animal-card[data-type="planta"] { background-image: linear-gradient(180deg, rgba(100,180,90,0.08), rgba(46,110,50,0.03)); }
+
+/* Rarity thin border (small contour) */
+.animal-card[data-rarity="comum"] { border-color: #bfbfbf; }
+.animal-card[data-rarity="incomum"] { border-color: #1f8f35; }
+.animal-card[data-rarity="raro"] { border-color: #0b5f9a; }
+.animal-card[data-rarity="epico"] { border-color: #4a1f9a; }
+.animal-card[data-rarity="lendario"] { border-color: #a86a00; }
+.animal-card[data-rarity="boss"] { border-color: #7a0000; }
+
+/* Species-specific card colors (main tones of the animal) - overrides the base background
+   Uses case-insensitive attribute matching to be robust. Add more species here as needed. */
+.animal-card[data-name*="onça" i], .animal-card[data-name*="onca" i], .animal-card[data-name*="jaguar" i] {
+  background: linear-gradient(180deg, #DDB67A 0%, #B07A3B 100%);
+  color: #111;
+}
+.animal-card[data-name*="arara-vermelha" i], .animal-card[data-name*="guaruba" i] {
+  background: linear-gradient(180deg, #FF6A4D 0%, #C83A12 100%);
+  color: #fff;
+}
+.animal-card[data-name*="arara-azul" i], .animal-card[data-name*="hyacinth" i] {
+  background: linear-gradient(180deg, #1B5FBF 0%, #063B7A 100%);
+  color: #fff;
+}
+.animal-card[data-name*="sucuri" i], .animal-card[data-name*="anaconda" i] {
+  background: linear-gradient(180deg, #2E5F39 0%, #122B17 100%);
+  color: #fff;
+}
+.animal-card[data-name*="boto" i], .animal-card[data-name*="boto" i] {
+  background: linear-gradient(180deg, #FFC0D1 0%, #FF8DAA 100%);
+  color: #111;
+}
+.animal-card[data-name*="pirarucu" i], .animal-card[data-name*="arapaima" i] {
+  background: linear-gradient(180deg, #E6C77A 0%, #B8863A 100%);
+  color: #111;
+}
+.animal-card[data-name*="mico-leão" i], .animal-card[data-name*="mico-leao" i], .animal-card[data-name*="leão" i] {
+  background: linear-gradient(180deg, #FFDE79 0%, #F0A400 100%);
+  color: #111;
+}
+.animal-card[data-name*="tartaruga" i], .animal-card[data-name*="tartaruga-verde" i] {
+  background: linear-gradient(180deg, #7FC8A9 0%, #2B8A6C 100%);
+  color: #072213;
+}
+.animal-card[data-name*="tucano" i], .animal-card[data-name*="ramphastos" i] {
+  background: linear-gradient(180deg, #0B0B0B 0%, #2E2E2E 100%);
+  color: #FF8C00; /* orange beak tone */
+}
+
+/* Ensure all textual elements inside the tucano card use the orange tone for consistency */
+.animal-card[data-name*="tucano" i] h3,
+.animal-card[data-name*="tucano" i] p,
+.animal-card[data-name*="tucano" i] .meta {
+  color: #FF8C00;
+}
+.animal-card[data-name*="lobo" i], .animal-card[data-name*="maned" i], .animal-card[data-name*="guara" i] {
+  background: linear-gradient(180deg, #E3A160 0%, #B65A2C 100%);
+  color: #111;
+}
+.animal-card[data-name*="iguana" i] {
+  background: linear-gradient(180deg, #9FD08F 0%, #3E7A43 100%);
+  color: #072213;
+}
+.animal-card[data-name*="harpia" i], .animal-card[data-name*="harpy" i] {
+  background: linear-gradient(180deg, #C1C5C9 0%, #72787D 100%);
+  color: #071014;
+}
+
+/* Fallback: if species not matched, per-type tint remains. */
+
+/* Personalized species colors requested by user (distinct tones when similar) */
+/* Ariranha (river/otter) - warm riverbank tones */
+.animal-card[data-name*="ariranha" i], .animal-card[data-name*="giant otter" i] {
+  background: linear-gradient(180deg, #C69F7B 0%, #7B5A3A 100%);
+  color: #081010;
+}
+
+/* Muriqui-do-norte - soft golden-olive (different from mico-leão-dourado) */
+.animal-card[data-name*="muriqui-do-norte" i], .animal-card[data-name*="muriqui" i] {
+  background: linear-gradient(180deg, #EFD89A 0%, #C2883A 100%);
+  color: #111;
+}
+
+/* Dourado (fish) - bright golden sheen */
+.animal-card[data-name*="dourado" i], .animal-card[data-name*="golden fish" i] {
+  background: linear-gradient(180deg, #FFD166 0%, #D49A1A 100%);
+  color: #111;
+}
+
+/* Borboleta azul (Morpho) - vivid blue iridescent */
+.animal-card[data-name*="borboleta-azul" i], .animal-card[data-name*="morpho" i] {
+  background: linear-gradient(180deg, #7AD1FF 0%, #2A74D2 100%);
+  color: #fff;
+}
+
+/* Jacu - earthy brown/forest understory */
+.animal-card[data-name*="jacu" i], .animal-card[data-name*="penelope" i] {
+  background: linear-gradient(180deg, #C9B79C 0%, #8C6A45 100%);
+  color: #111;
+}
+
+/* Tamanduá-bandeira - neutral grays and creams */
+.animal-card[data-name*="tamanduá" i], .animal-card[data-name*="tamandua" i] {
+  background: linear-gradient(180deg, #DCD6CF 0%, #A79E94 100%);
+  color: #111;
+}
+
+/* Araucária (tree) - deep pine / conifer green */
+.animal-card[data-name*="araucaria" i], .animal-card[data-name*="pinheiro-do-parana" i] {
+  background: linear-gradient(180deg, #7FB77E 0%, #2A6B3A 100%);
+  color: #fff;
+}
+
+/* Besouro rinoceronte - iridescent beetle colors (purple->green) */
+.animal-card[data-name*="besouro-rinoceronte" i], .animal-card[data-name*="rhinoceros beetle" i] {
+  background: linear-gradient(180deg, #6D2E6A 0%, #2E9A73 100%);
+  color: #fff;
+}
+
+/* Cedro - warm cedar wood tones */
+.animal-card[data-name*="cedro" i], .animal-card[data-name*="cedar" i] {
+  background: linear-gradient(180deg, #C27A4B 0%, #8C4A2E 100%);
+  color: #111;
+}
+
+/* Iguana - brighter green than default to stand out */
+.animal-card[data-name*="iguana" i] {
+  background: linear-gradient(180deg, #BFE6A8 0%, #4F8A3E 100%);
+  color: #072213;
+}
+
+/* Jacaré-do-pantanal - swampy olive & dark scale tones */
+.animal-card[data-name*="jacare-do-pantanal" i], .animal-card[data-name*="caiman" i] {
+  background: linear-gradient(180deg, #6B8F4D 0%, #2E5128 100%);
+  color: #fff;
+}
+
+/* Jequitibá (standard) - rich mahogany wood */
+.animal-card[data-name*="jequitiba" i], .animal-card[data-name*="jequitibá" i] {
+  background: linear-gradient(180deg, #A35A2B 0%, #6B2F18 100%);
+  color: #fff;
+}
+
+/* Jequitibá-rosa - rosier, softer wood tone to differ from jequitibá */
+.animal-card[data-name*="jequitiba-rosa" i], .animal-card[data-name*="jequitiba rosa" i] {
+  background: linear-gradient(180deg, #F0B2A0 0%, #C0705A 100%);
+  color: #111;
+}
+
+/* Orquídea - delicate orchid pink/purple */
+.animal-card[data-name*="orquidea" i], .animal-card[data-name*="orchid" i] {
+  background: linear-gradient(180deg, #F6C0E8 0%, #C56AA5 100%);
+  color: #071014;
+}
+
+/* Pau-brasil - warm orange / brazilwood tone */
+.animal-card[data-name*="pau-brasil" i] {
+  background: linear-gradient(180deg, #FF8B66 0%, #C94A1A 100%);
+  color: #111;
+}
+
+/* Perereca - bright lime tree-frog (different green than sapo) */
+.animal-card[data-name*="perereca" i] {
+  background: linear-gradient(180deg, #7CFF6A 0%, #2FA83E 100%);
+  color: #071014;
+}
+
+/* Sapo-de-barriga-verde - emerald/olive green distinct from perereca */
+.animal-card[data-name*="sapo-de-barriga-verde" i], .animal-card[data-name*="green-bellied frog" i] {
+  background: linear-gradient(180deg, #A8FF6E 0%, #3EA843 100%);
+  color: #071014;
+}
+
+/* Vitória-régia - teal water-lily with subtle pink highlights */
+.animal-card[data-name*="vitoria-regia" i], .animal-card[data-name*="victoria" i] {
+  background: linear-gradient(180deg, #9FEFE0 0%, #2EA88F 100%);
+  color: #072213;
+}
+
+/* Slight glow for epic/lendario/boss cards */
+.animal-card[data-rarity="epico"] { box-shadow: 0 14px 40px rgba(120,60,160,0.08); }
+.animal-card[data-rarity="lendario"] { box-shadow: 0 16px 48px rgba(180,140,30,0.10); }
+.animal-card[data-rarity="boss"] { box-shadow: 0 18px 58px rgba(180,40,40,0.12); transform-origin: center; }
+
+/* Sort menu */
+.sort { position: relative; display:flex; align-items:center; }
+.sort-menu {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: rgba(255,255,255,0.98);
+  color: #1D3B29;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  padding: 8px;
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+  z-index: 2200; /* garantir por cima dos cards */
+}
+.sort-menu.show { display:flex; }
+.sort-menu .sort-option { background: transparent; border: none; padding: 8px 10px; text-align: left; cursor: pointer; border-radius:6px; font-weight:700; }
+.sort-menu .sort-option:hover { background: rgba(0,0,0,0.06); }
+
+/* Small tweak: menu-item used as toggle should look appropriate */
+#sortToggle { background: transparent; border: none; color: #F2F5E9; cursor: pointer; padding:8px 12px; border-radius:8px; }
+#sortToggle:hover { background: rgba(255,255,255,0.06); }
+
+/* Forçar títulos dos cards a usar a tipografia padrão do site.
+   A tipografia especial permanece apenas nas badges (.rarity-*) */
+.animal-card h3 {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: normal;
+  text-transform: none;
+  color: #0f2b17;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  margin-bottom: 6px;
+}
+
+.animal-card.expanded h3 {
+  font-size: inherit;
+  margin-bottom: 8px;
+  font-weight: inherit;
+}
+
+.animal-card.expanded > img {
+  z-index: 10;
+}
+
+.animal-card.expanded > h3,
+.animal-card.expanded > p:not(.meta),
+.animal-card.expanded .meta {
+  padding: 0;
+  word-wrap: break-word;
+  font-size: inherit;
+}
+/* Expanded card state: visual enlargement without pushing layout
+   - scale card to 2.5x visually (transform), keep it above others with z-index
+   - positioned to slide to the right side
+   - image becomes a rectangular element anchored to top-right
+   - an expanded panel shows additional info and a fav-tab sits bottom-right */
+.animal-card.expanded {
+  /* expand by increasing element size (no scaling) so text keeps original size */
+  transform: translateX(18px);
+  transition: transform 340ms cubic-bezier(.2,.9,.2,1), box-shadow 340ms ease, filter 340ms ease, width 340ms ease, max-height 340ms ease;
+  z-index: 3000;
+  box-shadow: 0 50px 120px rgba(0,0,0,0.5);
+  position: relative;
+  width: min(720px, calc(100% - 40px));
+  min-width: 520px;
+  max-width: calc(100% - 40px);
+  height: auto;
+  max-height: 520px;
+  display: grid;
+  /* left column reserved for a fixed-size thumbnail so image does not scale */
+  grid-template-columns: 160px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 18px;
+}
+
+/* Backdrop blur effect for cards behind expanded card */
+body.has-expanded-card .animal-card:not(.expanded) {
+  filter: blur(2px) brightness(0.85);
+}
+
+.animal-card.expanded img {
+  /* keep thumbnail size fixed when expanded */
+  position: relative;
+  width: 160px;
+  height: 120px;
+  object-fit: cover;
+  transition: box-shadow 300ms ease;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+  grid-column: 1 / 2;
+  grid-row: 1 / -1;
+  align-self: center;
+}
+
+.animal-card .expanded-panel {
+  display: none;
+  margin-top: 8px;
+  padding: 8px 6px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 150px;
+}
+
+.animal-card.expanded .expanded-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 300ms ease 120ms, transform 300ms ease 120ms;
+  color: #1D3B29;
+}
+
+.animal-card.expanded .expanded-panel.visible { 
+  opacity: 1; 
+  transform: none; 
+}
+
+.phase-info {
+  padding: 8px 0;
+  color: #1D3B29;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.phase-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FFD166, #FFA500);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.expanded-info-section {
+  margin: 6px 0;
+  padding: 6px 0;
+  color: #1D3B29;
+}
+
+.expanded-info-section strong {
+  font-weight: 800;
+  color: #0d1a0d;
+  display: block;
+  margin-bottom: 2px;
+  font-size: 0.9rem;
+  transform: scale(0.4) translateX(-60px);
+  transform-origin: left center;
+}
+
+.expanded-info-section p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #1D3B29;
+  margin: 0;
+}
+
+/* Favorite tab inside expanded area (bottom-right) */
+.animal-card .fav-tab {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(255,255,255,0.98);
+  color: #1D3B29;
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  font-weight: 800;
+  z-index: 80;
+  border: none;
+  transition: all 260ms cubic-bezier(.2,.9,.2,1);
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.animal-card.expanded .fav-tab {
+  opacity: 1;
+  transform: none;
+  transition-delay: 120ms;
+}
+
+.animal-card .fav-tab:hover:not(.favorited) {
+  background: rgba(255,255,255,1);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+
+.animal-card .fav-tab .star { 
+  font-size: 1.1rem; 
+  color: #bcbcbc;
+  transition: color 260ms ease;
+}
+
+.animal-card .fav-tab.favorited { 
+  background: linear-gradient(135deg, #FFD166, #FFB347);
+  color: #6b3b00;
+  box-shadow: 0 10px 28px rgba(255,180,70,0.25);
+}
+
+.animal-card .fav-tab.favorited .star { 
+  color: #FFD700;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.animal-card .fav-tab.favorited:hover {
+  box-shadow: 0 12px 36px rgba(255,180,70,0.35);
+}
+
+/* Ensure expanded card positioning allows fav-tab absolute placement */
+.animal-card { position: relative; }
