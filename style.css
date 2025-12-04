@@ -4,15 +4,19 @@ html,body { height: 100%; }
 html { scroll-behavior: smooth; }
 :root { --topbar-offset: 76px; }
 body {
-  font-family: "Trebuchet MS", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: linear-gradient(135deg, #F2F5E9 0%, #E6F1D5 50%, #F2F5E9 100%);
     color: #1D3B29;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     display: flex;
     min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.6;
 }
 /* Sidebar */
-.topbar {
+.barra-superior {
     position: fixed;
     top: -120px;
     left: 50%;
@@ -31,23 +35,25 @@ body {
     transition: top .4s ease;
 }
 /* Quando a barra deve aparecer */
-.topbar.visible {
+.barra-superior.visivel {
     top: 12px;
 }
 /* Para detectar o hover e impedir desaparecimento */
-.topbar:hover {
+.barra-superior:hover {
     top: 12px;
 }
-.topbar .logo {
+.barra-superior .logo {
     width: 54px;
     height: 54px;
     border-radius: 10px;
     object-fit: cover;
     transition: width .28s ease, height .28s ease;
+    flex-shrink: 0;
 }
-.topbar:hover .logo { 
-    width: 80px; 
-    height: 80px; 
+
+.barra-superior:hover .logo { 
+    width: 60px; 
+    height: 60px;
 }
 
 .menu {
@@ -57,7 +63,7 @@ body {
     flex-grow: 1;
 }
 /* Itens do menu */
-.menu-item {
+.item-menu {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -68,33 +74,36 @@ body {
     transition: background .2s;
 }
 
-.menu-item:hover {
+.item-menu:hover {
     background: rgba(255,255,255,0.08);
 }
-.menu-item img.sidebar-icon {
+.item-menu img.icone-barra {
     width: 26px;
     height: 26px;
     object-fit: contain;
 }
 
-.menu-item span {
+.item-menu span {
+    font-family: 'Segoe UI', Roboto, sans-serif;
     font-weight: 700;
+    font-size: 0.95rem;
     white-space: nowrap;
+    letter-spacing: 0.2px;
 }
 
 /* Item que fica à direita (Contato) */
-.topbar-footer {
+.rodape-barra {
     margin-left: auto;
 }
 
 /* Conteúdo principal agora desce */
-.main {
+.conteudo {
   margin-top: 12px; /* reduzido ainda mais para aproximar o conteúdo do topo */
   padding: 22px 20px;
   width: 100%;
 }
 
-.sidebar:hover ~ .main, .main.sidebar-open { margin-left: 240px; width: calc(100% - 240px); }
+.barra-lateral:hover ~ .conteudo, .conteudo.aberto { margin-left: 240px; width: calc(100% - 240px); }
 
 header {
 	display:flex;
@@ -109,14 +118,23 @@ header {
 	gap:12px;
 }
 .title h1 {
-	font-size: 1.6rem;
+	font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+	font-size: 1.8rem;
+	font-weight: 700;
 	color: #2f4b2d;
-	letter-spacing: .4px;
+	letter-spacing: .6px;
+	line-height: 1.3;
 }
-.subtitle { color:#5d7a56; font-size: .95rem; }
+.subtitulo { 
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #5d7a56; 
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
 
 /* Sections */
-.card {
+.cartao {
     background: rgba(58, 107, 53, 0.92);
     border-radius: 14px;
     padding: 18px;
@@ -126,32 +144,40 @@ header {
 }
 
 /* Enciclopédia layout */
-.controls {
+.controles {
 	display:flex;
 	gap:12px;
 	align-items:center;
 	flex-wrap:wrap;
 	margin-bottom:14px;
+	margin-top:10px;
 }
-.search {
+
+.pesquisa {
 	flex:1 1 320px;
 	display:flex;
 	align-items:center;
 	gap:8px;
 }
-.search input {
+
+.pesquisa input {
 	width:100%;
 	padding:10px 12px;
 	border-radius:10px;
 	border:2px solid #958766;
-	font-size: .95rem;
+	font-size: 0.95rem;
+	font-family: 'Segoe UI', Roboto, sans-serif;
+	line-height: 1.5;
+	color: #1D3B29;
 }
-.filters {
+
+.filtros {
 	display:flex;
 	gap:8px;
 	flex-wrap:wrap;
 }
-.filters button {
+
+.filtros button {
     padding:8px 12px;
     border-radius:10px;
     border: none;
@@ -159,16 +185,36 @@ header {
     color: #F2F5E9;
     cursor:pointer;
     font-weight:700;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
-.filters button.active { background:#5b7a45; }
+
+.filtros button.ativo { background:#5b7a45; }
+
+.hint-texto,
+.dica-final {
+	color:#135703;
+	margin-bottom:10px;
+	font-size:.9rem;
+}
 
 /* Grid de cards de animais/plantas */
-.grid {
+.grade {
 	display:grid;
 	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 	gap: 14px;
 }
-.animal-card {
+
+.bestiario {
+	background: rgba(58, 107, 53, 0.92);
+	border-radius: 14px;
+	padding: 18px;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+	margin-bottom: 18px;
+	color: #F2F5E9;
+}
+.carta-animal {
   /* base neutral + subtle overlay; per-type rules override with a tint */
   background: linear-gradient(180deg, rgba(58,107,53,0.06), rgba(58,107,53,0.03));
   border-radius: 14px;
@@ -185,22 +231,37 @@ header {
   box-shadow: 0 12px 30px rgba(0,0,0,0.12), inset 0 -6px 40px rgba(255,255,255,0.02);
   cursor: pointer;
 }
-.animal-card:hover:not(.expanded) { 
+.carta-animal:hover:not(.expandido) { 
   transform: translateY(-6px) scale(1.03); 
   box-shadow: 0 10px 26px rgba(0,0,0,0.10); 
 }
-.animal-card img {
-	width:100%;
-	height:120px;
-	object-fit:cover;
-	border-radius:8px;
-	border: 1px solid rgba(0,0,0,0.04);
+.carta-animal img {
+	width: 100%;
+	height: 140px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 10px;
+	border: 1px solid rgba(0,0,0,0.08);
+	display: block;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.animal-card h3 { font-size:1.05rem; color:#0f2b17; text-shadow: 0 1px 0 rgba(255,255,255,0.06); }
-.animal-card p { font-size:.9rem; color:#08210a; }
-.meta { font-size:.82rem; color:#0e2b15; opacity: .95; }
+.carta-animal h3 { font-size:1.05rem; color:#0f2b17; text-shadow: 0 1px 0 rgba(255,255,255,0.06); }
+.carta-animal p { 
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.9rem; 
+  color: #08210a;
+  line-height: 1.5;
+}
+.meta { 
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.82rem; 
+  color: #0e2b15; 
+  opacity: 0.95;
+  line-height: 1.4;
+}
 
-.contact-info a {
+.info-contato a {
     color:#3A6B35;
     text-decoration:none;
     font-weight:700;
@@ -208,15 +269,15 @@ header {
     margin-right:10px;
 }
 @media (max-width: 900px) {
-	.sidebar { position:fixed; left:0; top:0; bottom:0; }
-	.main { margin-left:72px; width: calc(100% - 72px); padding:16px; }
+	.barra-lateral { position:fixed; left:0; top:0; bottom:0; }
+	.conteudo { margin-left:72px; width: calc(100% - 72px); padding:16px; }
 }
 @media (max-width: 520px) {
 	.title h1 { font-size:1.2rem; }
-	.animal-card img { height:100px; }
+	.carta-animal img { height:100px; }
 }
 
-.empresa-hero {
+.heroi-empresa {
   position: relative;
   height: 60vh; /* ocupa parte da tela dentro de sobre */
   min-height: 360px;
@@ -233,39 +294,39 @@ header {
 }
 
 @media (max-width: 900px) {
-  .empresa-hero { height: 42vh; min-height: 220px; }
+  .heroi-empresa { height: 42vh; min-height: 220px; }
 }
 
 @media (max-width: 520px) {
-  .empresa-hero { height: 34vh; min-height: 160px; }
+  .heroi-empresa { height: 34vh; min-height: 160px; }
 }
 
 /* Espaçamento ao usar scrollIntoView para compensar a topbar fixa */
-main > section, main .card { scroll-margin-top: var(--topbar-offset); }
+main > section, main .cartao { scroll-margin-top: var(--topbar-offset); }
 
 /* Animação: expansão da seção e entrada em cascata dos cards */
-.section-enter {
+.secao-entrando {
   opacity: 0;
   transform: translateY(8px) scale(0.996);
   transition: opacity .7s cubic-bezier(.2,.9,.2,1), transform .7s cubic-bezier(.2,.9,.2,1);
 }
-.section-enter.show {
+.secao-entrando.aparecer {
   opacity: 1;
   transform: none;
 }
 
-.section-enter .animal-card {
+.secao-entrando .carta-animal {
   opacity: 0;
-  transform: translateY(20px) scale(0.994);
-  transition: opacity .65s cubic-bezier(.2,.9,.2,1), transform .65s cubic-bezier(.2,.9,.2,1);
+  transform: translateX(-40px);
+  transition: opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1);
 }
-.section-enter .animal-card.visible-card {
+.secao-entrando .carta-animal.cartao-visivel {
   opacity: 1;
   transform: none;
 }
 
 /* Carrossel de fundo */
-.hero-bg-carousel {
+.carrossel-bg-heroi {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -273,7 +334,7 @@ main > section, main .card { scroll-margin-top: var(--topbar-offset); }
   overflow: hidden;
 }
 
-.hero-bg-carousel img.hero-bg {
+.carrossel-bg-heroi img.bg-heroi {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -285,12 +346,12 @@ main > section, main .card { scroll-margin-top: var(--topbar-offset); }
 }
 
 /* Imagem ativa */
-.hero-bg-carousel img.active {
+.carrossel-bg-heroi img.ativo {
   opacity: 1;
 }
 
 /* Sombra escura por cima */
-.empresa-hero::after {
+.heroi-empresa::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -299,42 +360,51 @@ main > section, main .card { scroll-margin-top: var(--topbar-offset); }
 }
 
 /* Conteúdo do hero */
-.hero-content {
+.conteudo-heroi {
   position: relative;
   z-index: 2;
   max-width: 800px;
   padding: 20px;
 }
 
-.hero-content h1 {
+.conteudo-heroi h1 {
   color: #F2F5E9;
 }
-.empresa-hero h1 {
+.heroi-empresa h1 {
+  font-family: 'Playfair Display', 'Cinzel', Georgia, serif;
   font-size: 3.2rem;
-  font-weight: 700;
+  font-weight: 900;
   margin-bottom: 0.8rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
-.hero-content p,
-.empresa-hero p {
+.conteudo-heroi p,
+.heroi-empresa p {
+  font-family: 'Segoe UI', Roboto, sans-serif;
   font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.7;
   margin-bottom: 1.5rem;
 }
 
 /* Botão */
-.btn-primary {
+.botao-primario {
   padding: 14px 28px;
   background: #3A6B35;
   color: #ffffff;
   border-radius: 10px;
   font-size: 1.1rem;
   font-weight: 700;
+  font-family: 'Segoe UI', Roboto, sans-serif;
   text-decoration: none;
   display: inline-block;
   transition: 0.25s ease;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
 }
 
-.btn-primary:hover {
+.botao-primario:hover {
   background: #1c9607;
   transform: scale(1.06);
 }
@@ -346,39 +416,58 @@ main > section, main .card { scroll-margin-top: var(--topbar-offset); }
   color: #1D3B29;
 }
 
-.columns {
+.container h2,
+.container h3 {
+  font-family: 'Playfair Display', 'Cinzel', Georgia, serif;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1D3B29;
+  line-height: 1.3;
+}
+
+.container h2 {
+  font-size: 2.2rem;
+  letter-spacing: -0.01em;
+}
+
+.container h3 {
+  font-size: 1.4rem;
+  letter-spacing: 0.2px;
+}
+
+.colunas {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
   align-items: center;
 }
 
-.text-block { flex: 1 1 480px; }
+.bloco-texto { flex: 1 1 480px; }
 
-.img-block { flex: 1 1 480px; }
+.bloco-imagem { flex: 1 1 480px; }
 
-.img-block img {
+.bloco-imagem img {
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
 /* About topics: imagens distribuídas + texto (alternância para evitar repetição) */
-.about-topics {
+.topicos-sobre {
   margin-top: 18px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
 }
 
-.about-topic {
+.topico-sobre {
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 14px;
   background: linear-gradient(180deg, rgba(58,107,53,0.08), rgba(58,107,53,0.02));
 }
-.about-topic .about-img {
+.topico-sobre .imagem-sobre {
   width: 220px;
   height: 140px;
   object-fit: cover;
@@ -386,24 +475,31 @@ main > section, main .card { scroll-margin-top: var(--topbar-offset); }
   flex: 0 0 220px;
   box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
-.about-topic .about-text h3 {
+.topico-sobre .texto-sobre h3 {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
   margin-bottom: 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: #F2F5E9;
+  letter-spacing: 0.3px;
+  line-height: 1.3;
 }
-.about-topic .about-text p {
+.topico-sobre .texto-sobre p {
+  font-family: 'Segoe UI', Roboto, sans-serif;
   color: #F2F5E9;
-  line-height: 1.38;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
-.about-topic.reverse { flex-direction: row-reverse; }
+.topico-sobre.reverso { flex-direction: row-reverse; }
 
 @media (min-width: 880px) {
-  .about-topics { grid-template-columns: 1fr 1fr; }
+  .topicos-sobre { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 520px) {
-  .about-topic { flex-direction: column; align-items: stretch; }
-  .about-topic .about-img { width: 100%; height: 160px; flex: none; }
+  .topico-sobre { flex-direction: column; align-items: stretch; }
+  .topico-sobre .imagem-sobre { width: 100%; height: 160px; flex: none; }
 }
 
 /* Rarity badge on animal cards */
@@ -428,244 +524,276 @@ main > section, main .card { scroll-margin-top: var(--topbar-offset); }
 .rarity-boss { background: linear-gradient(180deg,#b71c1c,#7a0000); color:#fff; box-shadow: 0 14px 36px rgba(150,30,30,0.30); border: 1px solid rgba(255,255,255,0.06); font-family: 'Playfair Display', 'Cinzel', serif; font-weight:900; text-transform:uppercase; letter-spacing:.8px; }
 
 /* Small colored tint per animal type to approximate main colors of the species */
-.animal-card[data-type="mamifero"] { background-image: linear-gradient(180deg, rgba(96,64,40,0.08), rgba(46,70,42,0.04)); }
-.animal-card[data-type="ave"] { background-image: linear-gradient(180deg, rgba(255,220,120,0.06), rgba(255,180,60,0.03)); color: #072213; }
-.animal-card[data-type="reptil"] { background-image: linear-gradient(180deg, rgba(34,120,40,0.08), rgba(24,80,30,0.04)); }
-.animal-card[data-type="peixe"] { background-image: linear-gradient(180deg, rgba(30,140,200,0.08), rgba(12,80,120,0.04)); }
-.animal-card[data-type="anfibio"] { background-image: linear-gradient(180deg, rgba(60,180,90,0.08), rgba(30,110,60,0.04)); }
-.animal-card[data-type="inseto"] { background-image: linear-gradient(180deg, rgba(200,120,220,0.06), rgba(150,80,180,0.03)); color: #072213; }
-.animal-card[data-type="planta"] { background-image: linear-gradient(180deg, rgba(100,180,90,0.08), rgba(46,110,50,0.03)); }
+.carta-animal[data-type="mamifero"] { background-image: linear-gradient(180deg, rgba(96,64,40,0.08), rgba(46,70,42,0.04)); }
+.carta-animal[data-type="ave"] { background-image: linear-gradient(180deg, rgba(255,220,120,0.06), rgba(255,180,60,0.03)); color: #072213; }
+.carta-animal[data-type="reptil"] { background-image: linear-gradient(180deg, rgba(34,120,40,0.08), rgba(24,80,30,0.04)); }
+.carta-animal[data-type="peixe"] { background-image: linear-gradient(180deg, rgba(30,140,200,0.08), rgba(12,80,120,0.04)); }
+.carta-animal[data-type="anfibio"] { background-image: linear-gradient(180deg, rgba(60,180,90,0.08), rgba(30,110,60,0.04)); }
+.carta-animal[data-type="inseto"] { background-image: linear-gradient(180deg, rgba(200,120,220,0.06), rgba(150,80,180,0.03)); color: #072213; }
+.carta-animal[data-type="planta"] { background-image: linear-gradient(180deg, rgba(100,180,90,0.08), rgba(46,110,50,0.03)); }
 
 /* Rarity thin border (small contour) */
-.animal-card[data-rarity="comum"] { border-color: #bfbfbf; }
-.animal-card[data-rarity="incomum"] { border-color: #1f8f35; }
-.animal-card[data-rarity="raro"] { border-color: #0b5f9a; }
-.animal-card[data-rarity="epico"] { border-color: #4a1f9a; }
-.animal-card[data-rarity="lendario"] { border-color: #a86a00; }
-.animal-card[data-rarity="boss"] { border-color: #7a0000; }
+.carta-animal[data-rarity="comum"] { border-color: #bfbfbf; }
+.carta-animal[data-rarity="incomum"] { border-color: #1f8f35; }
+.carta-animal[data-rarity="raro"] { border-color: #0b5f9a; }
+.carta-animal[data-rarity="epico"] { border-color: #4a1f9a; }
+.carta-animal[data-rarity="lendario"] { border-color: #a86a00; }
+.carta-animal[data-rarity="boss"] { border-color: #7a0000; }
 
 /* Species-specific card colors (main tones of the animal) - overrides the base background
    Uses case-insensitive attribute matching to be robust. Add more species here as needed. */
-.animal-card[data-name*="onça" i], .animal-card[data-name*="onca" i], .animal-card[data-name*="jaguar" i] {
+.carta-animal[data-name*="onça" i], .carta-animal[data-name*="onca" i], .carta-animal[data-name*="jaguar" i] {
   background: linear-gradient(180deg, #DDB67A 0%, #B07A3B 100%);
   color: #111;
 }
-.animal-card[data-name*="arara-vermelha" i], .animal-card[data-name*="guaruba" i] {
+.carta-animal[data-name*="arara-vermelha" i], .carta-animal[data-name*="guaruba" i] {
   background: linear-gradient(180deg, #FF6A4D 0%, #C83A12 100%);
   color: #fff;
 }
-.animal-card[data-name*="arara-azul" i], .animal-card[data-name*="hyacinth" i] {
+.carta-animal[data-name*="arara-azul" i], .carta-animal[data-name*="hyacinth" i] {
   background: linear-gradient(180deg, #1B5FBF 0%, #063B7A 100%);
   color: #fff;
 }
-.animal-card[data-name*="sucuri" i], .animal-card[data-name*="anaconda" i] {
+.carta-animal[data-name*="sucuri" i], .carta-animal[data-name*="anaconda" i] {
   background: linear-gradient(180deg, #2E5F39 0%, #122B17 100%);
   color: #fff;
 }
-.animal-card[data-name*="boto" i], .animal-card[data-name*="boto" i] {
+.carta-animal[data-name*="boto" i], .carta-animal[data-name*="boto" i] {
   background: linear-gradient(180deg, #FFC0D1 0%, #FF8DAA 100%);
   color: #111;
 }
-.animal-card[data-name*="pirarucu" i], .animal-card[data-name*="arapaima" i] {
+.carta-animal[data-name*="pirarucu" i], .carta-animal[data-name*="arapaima" i] {
   background: linear-gradient(180deg, #E6C77A 0%, #B8863A 100%);
   color: #111;
 }
-.animal-card[data-name*="mico-leão" i], .animal-card[data-name*="mico-leao" i], .animal-card[data-name*="leão" i] {
+.carta-animal[data-name*="mico-leão" i], .carta-animal[data-name*="mico-leao" i], .carta-animal[data-name*="leão" i] {
   background: linear-gradient(180deg, #FFDE79 0%, #F0A400 100%);
   color: #111;
 }
-.animal-card[data-name*="tartaruga" i], .animal-card[data-name*="tartaruga-verde" i] {
+.carta-animal[data-name*="tartaruga" i], .carta-animal[data-name*="tartaruga-verde" i] {
   background: linear-gradient(180deg, #7FC8A9 0%, #2B8A6C 100%);
   color: #072213;
 }
-.animal-card[data-name*="tucano" i], .animal-card[data-name*="ramphastos" i] {
+.carta-animal[data-name*="tucano" i], .carta-animal[data-name*="ramphastos" i] {
   background: linear-gradient(180deg, #0B0B0B 0%, #2E2E2E 100%);
   color: #FF8C00; /* orange beak tone */
 }
 
 /* Ensure all textual elements inside the tucano card use the orange tone for consistency */
-.animal-card[data-name*="tucano" i] h3,
-.animal-card[data-name*="tucano" i] p,
-.animal-card[data-name*="tucano" i] .meta {
+.carta-animal[data-name*="tucano" i] h3,
+.carta-animal[data-name*="tucano" i] p,
+.carta-animal[data-name*="tucano" i] .meta {
   color: #FF8C00;
 }
-.animal-card[data-name*="lobo" i], .animal-card[data-name*="maned" i], .animal-card[data-name*="guara" i] {
+.carta-animal[data-name*="lobo" i], .carta-animal[data-name*="maned" i], .carta-animal[data-name*="guara" i] {
   background: linear-gradient(180deg, #E3A160 0%, #B65A2C 100%);
   color: #111;
 }
-.animal-card[data-name*="iguana" i] {
+.carta-animal[data-name*="iguana" i] {
   background: linear-gradient(180deg, #9FD08F 0%, #3E7A43 100%);
   color: #072213;
 }
-.animal-card[data-name*="harpia" i], .animal-card[data-name*="harpy" i] {
+.carta-animal[data-name*="harpia" i], .carta-animal[data-name*="harpy" i] {
   background: linear-gradient(180deg, #C1C5C9 0%, #72787D 100%);
   color: #071014;
 }
 
-.animal-card[data-name*="ariranha" i], .animal-card[data-name*="giant otter" i] {
+.carta-animal[data-name*="ariranha" i], .carta-animal[data-name*="giant otter" i] {
   background: linear-gradient(180deg, #C69F7B 0%, #7B5A3A 100%);
   color: #081010;
 }
 
 /* Muriqui-do-norte - soft golden-olive (different from mico-leão-dourado) */
-.animal-card[data-name*="muriqui-do-norte" i], .animal-card[data-name*="muriqui" i] {
+.carta-animal[data-name*="muriqui-do-norte" i], .carta-animal[data-name*="muriqui" i] {
   background: linear-gradient(180deg, #EFD89A 0%, #C2883A 100%);
   color: #111;
 }
 
 /* Dourado (fish) - bright golden sheen */
-.animal-card[data-name*="dourado" i], .animal-card[data-name*="golden fish" i] {
+.carta-animal[data-name*="dourado" i], .carta-animal[data-name*="golden fish" i] {
   background: linear-gradient(180deg, #FFD166 0%, #D49A1A 100%);
   color: #111;
 }
 
 /* Borboleta azul (Morpho) - vivid blue iridescent */
-.animal-card[data-name*="borboleta-azul" i], .animal-card[data-name*="morpho" i] {
+.carta-animal[data-name*="borboleta-azul" i], .carta-animal[data-name*="morpho" i] {
   background: linear-gradient(180deg, #7AD1FF 0%, #2A74D2 100%);
   color: #fff;
 }
 
 /* Jacu - earthy brown/forest understory */
-.animal-card[data-name*="jacu" i], .animal-card[data-name*="penelope" i] {
+.carta-animal[data-name*="jacu" i], .carta-animal[data-name*="penelope" i] {
   background: linear-gradient(180deg, #C9B79C 0%, #8C6A45 100%);
   color: #111;
 }
 
 /* Tamanduá-bandeira - neutral grays and creams */
-.animal-card[data-name*="tamanduá" i], .animal-card[data-name*="tamandua" i] {
+.carta-animal[data-name*="tamanduá" i], .carta-animal[data-name*="tamandua" i] {
   background: linear-gradient(180deg, #DCD6CF 0%, #A79E94 100%);
   color: #111;
 }
 
 /* Araucária (tree) - deep pine / conifer green */
-.animal-card[data-name*="araucaria" i], .animal-card[data-name*="pinheiro-do-parana" i] {
+.carta-animal[data-name*="araucaria" i], .carta-animal[data-name*="pinheiro-do-parana" i] {
   background: linear-gradient(180deg, #7FB77E 0%, #2A6B3A 100%);
   color: #fff;
 }
 
 /* Besouro rinoceronte - iridescent beetle colors (purple->green) */
-.animal-card[data-name*="besouro-rinoceronte" i], .animal-card[data-name*="rhinoceros beetle" i] {
+.carta-animal[data-name*="besouro-rinoceronte" i], .carta-animal[data-name*="rhinoceros beetle" i] {
   background: linear-gradient(180deg, #6D2E6A 0%, #2E9A73 100%);
   color: #fff;
 }
 
 /* Cedro - warm cedar wood tones */
-.animal-card[data-name*="cedro" i], .animal-card[data-name*="cedar" i] {
+.carta-animal[data-name*="cedro" i], .carta-animal[data-name*="cedar" i] {
   background: linear-gradient(180deg, #C27A4B 0%, #8C4A2E 100%);
   color: #111;
 }
 
 /* Iguana - brighter green than default to stand out */
-.animal-card[data-name*="iguana" i] {
+.carta-animal[data-name*="iguana" i] {
   background: linear-gradient(180deg, #BFE6A8 0%, #4F8A3E 100%);
   color: #072213;
 }
 
 /* Jacaré-do-pantanal - swampy olive & dark scale tones */
-.animal-card[data-name*="jacare-do-pantanal" i], .animal-card[data-name*="caiman" i] {
+.carta-animal[data-name*="jacare-do-pantanal" i], .carta-animal[data-name*="caiman" i] {
   background: linear-gradient(180deg, #6B8F4D 0%, #2E5128 100%);
   color: #fff;
 }
 
 /* Jequitibá (standard) - rich mahogany wood */
-.animal-card[data-name*="jequitiba" i], .animal-card[data-name*="jequitibá" i] {
+.carta-animal[data-name*="jequitiba" i], .carta-animal[data-name*="jequitibá" i] {
   background: linear-gradient(180deg, #A35A2B 0%, #6B2F18 100%);
   color: #fff;
 }
 
 /* Jequitibá-rosa - rosier, softer wood tone to differ from jequitibá */
-.animal-card[data-name*="jequitiba-rosa" i], .animal-card[data-name*="jequitiba rosa" i] {
+.carta-animal[data-name*="jequitiba-rosa" i], .carta-animal[data-name*="jequitiba rosa" i] {
   background: linear-gradient(180deg, #F0B2A0 0%, #C0705A 100%);
   color: #111;
 }
 
 /* Orquídea - delicate orchid pink/purple */
-.animal-card[data-name*="orquidea" i], .animal-card[data-name*="orchid" i] {
+.carta-animal[data-name*="orquidea" i], .carta-animal[data-name*="orchid" i] {
   background: linear-gradient(180deg, #F6C0E8 0%, #C56AA5 100%);
   color: #071014;
 }
 
 /* Pau-brasil - warm orange / brazilwood tone */
-.animal-card[data-name*="pau-brasil" i] {
+.carta-animal[data-name*="pau-brasil" i] {
   background: linear-gradient(180deg, #FF8B66 0%, #C94A1A 100%);
   color: #111;
 }
 
 /* Perereca - bright lime tree-frog (different green than sapo) */
-.animal-card[data-name*="perereca" i] {
+.carta-animal[data-name*="perereca" i] {
   background: linear-gradient(180deg, #7CFF6A 0%, #2FA83E 100%);
   color: #071014;
 }
 
 /* Sapo-de-barriga-verde - emerald/olive green distinct from perereca */
-.animal-card[data-name*="sapo-de-barriga-verde" i], .animal-card[data-name*="green-bellied frog" i] {
+.carta-animal[data-name*="sapo-de-barriga-verde" i], .carta-animal[data-name*="green-bellied frog" i] {
   background: linear-gradient(180deg, #A8FF6E 0%, #3EA843 100%);
   color: #071014;
 }
 
 /* Vitória-régia - teal water-lily with subtle pink highlights */
-.animal-card[data-name*="vitoria-regia" i], .animal-card[data-name*="victoria" i] {
+.carta-animal[data-name*="vitoria-regia" i], .carta-animal[data-name*="victoria" i] {
   background: linear-gradient(180deg, #9FEFE0 0%, #2EA88F 100%);
   color: #072213;
 }
 
 /* Slight glow for epic/lendario/boss cards */
-.animal-card[data-rarity="epico"] { box-shadow: 0 14px 40px rgba(120,60,160,0.08); }
-.animal-card[data-rarity="lendario"] { box-shadow: 0 16px 48px rgba(180,140,30,0.10); }
-.animal-card[data-rarity="boss"] { box-shadow: 0 18px 58px rgba(180,40,40,0.12); transform-origin: center; }
+.carta-animal[data-rarity="epico"] { box-shadow: 0 14px 40px rgba(120,60,160,0.08); }
+.carta-animal[data-rarity="lendario"] { box-shadow: 0 16px 48px rgba(180,140,30,0.10); }
+.carta-animal[data-rarity="boss"] { box-shadow: 0 18px 58px rgba(180,40,40,0.12); transform-origin: center; }
 
 /* Sort menu */
-.sort { position: relative; display:flex; align-items:center; }
-.sort-menu {
-  position: absolute;
-  top: 42px;
-  right: 0;
-  background: rgba(255,255,255,0.98);
-  color: #1D3B29;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-  padding: 8px;
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 220px;
-  z-index: 2200; /* garantir por cima dos cards */
+.ordenacao { 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
 }
-.sort-menu.show { display:flex; }
-.sort-menu .sort-option { background: transparent; border: none; padding: 8px 10px; text-align: left; cursor: pointer; border-radius:6px; font-weight:700; }
-.sort-menu .sort-option:hover { background: rgba(0,0,0,0.06); }
 
-/* Small tweak: menu-item used as toggle should look appropriate */
-#sortToggle { background: transparent; border: none; color: #F2F5E9; cursor: pointer; padding:8px 12px; border-radius:8px; }
-#sortToggle:hover { background: rgba(255,255,255,0.06); }
+.menu-ordenacao {
+    position: absolute;
+    top: 42px;
+    right: 0;
+    background: rgba(255,255,255,0.98);
+    color: #1D3B29;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 220px;
+    z-index: 2200;
+}
+
+.menu-ordenacao.mostrar { 
+    display: flex; 
+}
+
+.menu-ordenacao .opcao-ordenacao { 
+    background: transparent; 
+    border: none; 
+    padding: 8px 10px; 
+    text-align: left; 
+    cursor: pointer; 
+    border-radius: 6px; 
+    font-weight: 700;
+    transition: background 200ms ease;
+}
+
+.menu-ordenacao .opcao-ordenacao:hover { 
+    background: rgba(0,0,0,0.06); 
+}
+
+#botao-ordenacao { 
+    background: transparent; 
+    border: none; 
+    color: #F2F5E9; 
+    cursor: pointer; 
+    padding: 8px 12px; 
+    border-radius: 8px;
+    transition: background 200ms ease;
+}
+
+#botao-ordenacao:hover { 
+    background: rgba(255,255,255,0.06); 
+}
 
 /* Forçar títulos dos cards a usar a tipografia padrão do site.
    A tipografia especial permanece apenas nas badges (.rarity-*) */
-.animal-card h3 {
-  font-family: inherit;
+.carta-animal h3 {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: normal;
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
   text-transform: none;
   color: #0f2b17;
   text-shadow: 0 1px 0 rgba(255,255,255,0.06);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  line-height: 1.4;
 }
 
-.animal-card.expanded h3 {
+.carta-animal.expandido h3 {
   font-size: inherit;
   margin-bottom: 8px;
   font-weight: inherit;
 }
 
-.animal-card.expanded > img {
+.carta-animal.expandido > img {
   z-index: 10;
 }
 
-.animal-card.expanded > h3,
-.animal-card.expanded > p:not(.meta),
-.animal-card.expanded .meta {
+.carta-animal.expandido > h3,
+.carta-animal.expandido > p:not(.meta),
+.carta-animal.expandido .meta {
   padding: 0;
   word-wrap: break-word;
   font-size: inherit;
@@ -675,7 +803,7 @@ main > section, main .card { scroll-margin-top: var(--topbar-offset); }
    - positioned to slide to the right side
    - image becomes a rectangular element anchored to top-right
    - an expanded panel shows additional info and a fav-tab sits bottom-right */
-.animal-card.expanded {
+.carta-animal.expandido {
   /* expand by increasing element size (no scaling) so text keeps original size */
   transform: translateX(18px);
   transition: transform 340ms cubic-bezier(.2,.9,.2,1), box-shadow 340ms ease, filter 340ms ease, width 340ms ease, max-height 340ms ease;
@@ -696,11 +824,11 @@ main > section, main .card { scroll-margin-top: var(--topbar-offset); }
 }
 
 /* Backdrop blur effect for cards behind expanded card */
-body.has-expanded-card .animal-card:not(.expanded) {
+body.tem-carta-expandida .carta-animal:not(.expandido) {
   filter: blur(2px) brightness(0.85);
 }
 
-.animal-card.expanded img {
+.carta-animal.expandido img {
   /* keep thumbnail size fixed when expanded */
   position: relative;
   width: 160px;
@@ -714,7 +842,7 @@ body.has-expanded-card .animal-card:not(.expanded) {
   align-self: center;
 }
 
-.animal-card .expanded-panel {
+.carta-animal .painel-expandido {
   display: none;
   margin-top: 8px;
   padding: 8px 6px;
@@ -726,7 +854,7 @@ body.has-expanded-card .animal-card:not(.expanded) {
   max-height: 150px;
 }
 
-.animal-card.expanded .expanded-panel {
+.carta-animal.expandido .painel-expandido {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -736,12 +864,12 @@ body.has-expanded-card .animal-card:not(.expanded) {
   color: #1D3B29;
 }
 
-.animal-card.expanded .expanded-panel.visible { 
+.carta-animal.expandido .painel-expandido.visivel { 
   opacity: 1; 
   transform: none; 
 }
 
-.phase-info {
+.info-fase {
   padding: 8px 0;
   color: #1D3B29;
   font-weight: 700;
@@ -751,7 +879,7 @@ body.has-expanded-card .animal-card:not(.expanded) {
   gap: 8px;
 }
 
-.phase-number {
+.numero-fase {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -764,13 +892,13 @@ body.has-expanded-card .animal-card:not(.expanded) {
   text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.expanded-info-section {
+.secao-info-expandida {
   margin: 6px 0;
   padding: 6px 0;
   color: #1D3B29;
 }
 
-.expanded-info-section strong {
+.secao-info-expandida strong {
   font-weight: 800;
   color: #0d1a0d;
   display: block;
@@ -780,7 +908,7 @@ body.has-expanded-card .animal-card:not(.expanded) {
   transform-origin: left center;
 }
 
-.expanded-info-section p {
+.secao-info-expandida p {
   font-size: 0.82rem;
   line-height: 1.5;
   color: #1D3B29;
@@ -788,7 +916,7 @@ body.has-expanded-card .animal-card:not(.expanded) {
 }
 
 /* Favorite tab inside expanded area (bottom-right) */
-.animal-card .fav-tab {
+.carta-animal .aba-favoritar {
   position: absolute;
   right: 12px;
   bottom: 12px;
@@ -810,39 +938,181 @@ body.has-expanded-card .animal-card:not(.expanded) {
   transform: translateY(10px);
 }
 
-.animal-card.expanded .fav-tab {
+.carta-animal.expandido .aba-favoritar {
   opacity: 1;
   transform: none;
   transition-delay: 120ms;
 }
 
-.animal-card .fav-tab:hover:not(.favorited) {
+.carta-animal .aba-favoritar:hover:not(.favoritado) {
   background: rgba(255,255,255,1);
   box-shadow: 0 12px 32px rgba(0,0,0,0.2);
   transform: translateY(-2px);
 }
 
-.animal-card .fav-tab .star { 
+.carta-animal .aba-favoritar .estrela { 
   font-size: 1.1rem; 
   color: #bcbcbc;
   transition: color 260ms ease;
 }
 
-.animal-card .fav-tab.favorited { 
+.carta-animal .aba-favoritar.favoritado { 
   background: linear-gradient(135deg, #FFD166, #FFB347);
   color: #6b3b00;
   box-shadow: 0 10px 28px rgba(255,180,70,0.25);
 }
 
-.animal-card .fav-tab.favorited .star { 
+.carta-animal .aba-favoritar.favoritado .estrela { 
   color: #FFD700;
   text-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-.animal-card .fav-tab.favorited:hover {
+.carta-animal .aba-favoritar.favoritado:hover {
   box-shadow: 0 12px 36px rgba(255,180,70,0.35);
 }
 
-/* Ensure expanded card positioning allows fav-tab absolute placement */
-.animal-card { position: relative; }
+/* Ensure expanded card positioning allows aba-favoritar absolute placement */
+.carta-animal { position: relative; }
 
+/* ======================================
+   Seções Dicas e Contato - Styling
+   ====================================== */
+
+/* Seções de informação (Dicas e Contato) */
+.secao-info {
+  background: linear-gradient(135deg, rgba(58, 107, 53, 0.95), rgba(74, 128, 68, 0.90));
+  border-radius: 18px;
+  padding: 48px 36px;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+#ajuda,
+#contato {
+  background: linear-gradient(135deg, rgba(58, 107, 53, 0.95), rgba(74, 128, 68, 0.90));
+  border-radius: 18px;
+  padding: 48px 36px;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+#ajuda h2,
+#contato h2 {
+  font-family: 'Playfair Display', 'Cinzel', Georgia, serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #F2F5E9;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  letter-spacing: -0.02em;
+}
+
+#ajuda h3 {
+  font-family: 'Playfair Display', 'Cinzel', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #E8F4E1;
+  margin-top: 28px;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+#ajuda p,
+#contato p {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #F2F5E9;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+#ajuda ul,
+#contato ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#ajuda li {
+  background: rgba(255,255,255,0.08);
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border-left: 4px solid #FFD166;
+  color: #F2F5E9;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: all 260ms cubic-bezier(.2,.9,.2,1);
+  backdrop-filter: blur(10px);
+}
+
+#ajuda li:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateX(8px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  border-left-color: #FFE680;
+}
+
+.info-contato {
+  background: rgba(255,255,255,0.08);
+  padding: 24px;
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  margin: 18px 0 20px;
+}
+
+.info-contato a {
+  color: #FFE680 !important;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: inline-block;
+  margin-bottom: 12px;
+  transition: all 260ms ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(255,222,100,0.1);
+}
+
+.info-contato a:hover {
+  color: #FFF !important;
+  background: rgba(255,222,100,0.25);
+  transform: translateX(4px);
+}
+
+/* Responsive para telas menores */
+@media (max-width: 768px) {
+  .secao-info,
+  #ajuda,
+  #contato {
+    padding: 32px 24px;
+    margin-bottom: 20px;
+  }
+
+  #ajuda h2,
+  #contato h2 {
+    font-size: 2.2rem;
+    margin-bottom: 18px;
+  }
+
+  #ajuda h3 {
+    font-size: 1.3rem;
+    margin-top: 20px;
+  }
+
+  #ajuda li {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+  }
+
+  .info-contato a {
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+  }
+}
